@@ -106,11 +106,11 @@ class plgContentplg_nok_json extends JPlugin {
 		}
 		switch ($this->hashget($params,'view')) {
 			case "table":
-				$html .= '<table id="'.$elementId.'" class="table json">'."\n".'</table>'."\n";
+				$html .= '<div class="table-responsive"><table id="'.$elementId.'" class="table json">'."\n".'</table></div>'."\n";
 				$html .= $this->json_createJS("displayJsonAsTable('".$this->getUrl($params)."','".$elementId."',".$fieldArray.",".$labelArray.",'".$this->hashget($params,'scope')."','".$this->hashget($params,'sortField')."','".$this->hashget($params,'sortDirection')."','".$this->hashget($params,'recordsVar')."');");
 				break;
 			case "records":
-				$html .= '<table id="'.$elementId.'" class="table json">'."\n".'</table>'."\n";
+				$html .= '<div class="table-responsive"><table id="'.$elementId.'" class="table json">'."\n".'</table></div>'."\n";
 				$html .= $this->json_createJS("displayJsonAsRecords('".$this->getUrl($params)."','".$elementId."',".$fieldArray.",".$labelArray.",'".$this->hashget($params,'scope')."','".$this->hashget($params,'sortField')."','".$this->hashget($params,'sortDirection')."','".$this->hashget($params,'recordsVar')."');");
 				break;
 			case "fields":
@@ -158,7 +158,7 @@ class plgContentplg_nok_json extends JPlugin {
 	}
 
 	protected function json_createHtmlServerTable($elementId, $labels, $fields, $records) {
-		$html = '<table id="'.$elementId.'" class="table json">'."\n";
+		$html = '<div class="table-responsive"><table id="'.$elementId.'" class="table json">'."\n";
 		if(count($labels) > 0) {
 			$html .= '<tr><th>'.implode('</th><th>',$labels).'</th></tr>';
 		}
@@ -169,12 +169,12 @@ class plgContentplg_nok_json extends JPlugin {
 			}
 			$html .= '</tr>';
 		}
-		$html .= '</table>'."\n";
+		$html .= '</table></div>'."\n";
 		return $html;
 	}
 
 	protected function json_createHtmlServerRecords($elementId, $labels, $fields, $records) {
-		$html = '<table id="'.$elementId.'" class="table json">'."\n";
+		$html = '<div class="table-responsive"><table id="'.$elementId.'" class="table json">'."\n";
 		foreach($fields as $key => $field) {
 			$html .= '<tr>';
 			$html .= '<th>'.(isset($labels[$key]) ? $labels[$key] : '').'</th>';
@@ -183,7 +183,7 @@ class plgContentplg_nok_json extends JPlugin {
 			}
 			$html .= '</tr>';
 		}
-		$html .= '</table>'."\n";
+		$html .= '</table></div>'."\n";
 		return $html;
 	}
 
